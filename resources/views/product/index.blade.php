@@ -2,6 +2,6 @@
 
 <ul>
     @foreach($products as $product)
-        <li>{{$product->name}}</li>
+        <li>{{$product->getName()}} - {{$product->getPrice()}}</li>
     @endforeach
 </ul>

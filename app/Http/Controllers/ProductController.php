@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Product\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use App\Repositories\EloquentProductRepository;
 
 class ProductController extends Controller
 {
+
+    private ProductRepository $repository;
+
+    public function __construct(ProductRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::all();
+        $products = $this->repository->getAll();
 
         return view('product.index', ['products' => $products]);
     }

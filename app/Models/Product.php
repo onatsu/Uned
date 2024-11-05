@@ -10,4 +10,14 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'price'];
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
 }

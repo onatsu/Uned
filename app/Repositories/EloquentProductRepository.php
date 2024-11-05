@@ -14,7 +14,7 @@ class EloquentProductRepository implements ProductRepository
         $return = [];
         foreach (LaravelProduct::all() as $product)
         {
-            $return[] = new Product($product->name, $product->price);
+            $return[] = $product;
         }
         return $return;
     }

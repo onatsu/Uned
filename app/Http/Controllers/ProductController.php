@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Application\Product\CreateProductRequest;
 use App\Application\Product\ProductCreate;
-use App\Domain\Product\Product;
 use App\Domain\Product\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -53,7 +53,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('product.view', ['product' => $product]);
     }
 
     /**

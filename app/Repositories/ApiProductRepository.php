@@ -14,4 +14,9 @@ class ApiProductRepository implements ProductRepository
             new Product('a name', 200)
         ];
     }
+
+    public function save(Product $product): void
+    {
+        // TODO: Implement save() method.
+    }
 }

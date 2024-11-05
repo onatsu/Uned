@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Application\Product\CreateProductRequest;
+use App\Application\Product\ProductCreate;
+use App\Domain\Product\Product;
 use App\Domain\Product\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Product;
-use App\Repositories\EloquentProductRepository;
 
 class ProductController extends Controller
 {
 
     private ProductRepository $repository;
+    private ProductCreate $createProductUseCase;
 
-    public function __construct(ProductRepository $repository)
+    public function __construct(ProductRepository $repository, ProductCreate $createProductUseCase)
     {
         $this->repository = $repository;
+        $this->createProductUseCase = $createProductUseCase;
     }
 
     /**
@@ -41,7 +44,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        product::create($request->all());
+        $request = new CreateProductRequest($request->name, $request->price);
+        $this->createProductUseCase->execute($request);
     }
 
     /**

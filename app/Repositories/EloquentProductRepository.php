@@ -18,4 +18,9 @@ class EloquentProductRepository implements ProductRepository
         }
         return $return;
     }
+
+    public function save(Product $product): void
+    {
+        LaravelProduct::create(['name' => $product->getName(), 'price' => $product->getPrice()]);
+    }
 }

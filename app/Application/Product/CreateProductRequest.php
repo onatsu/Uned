@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Domain\Product;
+namespace App\Application\Product;
 
-class Product
+class CreateProductRequest
 {
-    private $name;
-    private $price;
+    private string $name;
+    private int $price;
 
     public function __construct(string $name, int $price)
     {
@@ -13,18 +13,12 @@ class Product
         $this->price = $price;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPrice()
+    public function getPrice(): int
     {
         return $this->price;
     }

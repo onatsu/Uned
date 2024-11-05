@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Application\Product\CreateProductUseCase;
+use App\Application\Product\CreateProductWithMetricsUseCase;
+use App\Application\Product\ProductCreate;
 use App\Domain\Product\ProductRepository;
-use App\Repositories\ApiProductRepository;
 use App\Repositories\EloquentProductRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(ProductRepository::class, EloquentProductRepository::class);
+        $this->app->bind(ProductCreate::class, CreateProductUseCase::class);
+        $this->app->when(CreateProductWithMetricsUseCase::class)
+            ->needs(ProductCreate::class)
+            ->give(CreateProductUseCase::class);
     }
 
     /**

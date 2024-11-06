@@ -10,3 +10,14 @@
         <li>{{$tag->name}}</li>
     @endforeach
 </ul>
+
+<h2>
+    Commentarios
+</h2>
+
+<ul>
+    @foreach($product->comments as $comment)
+        <li>{{$comment->content}}</li>
+    @endforeach
+</ul>
+

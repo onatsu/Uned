@@ -2,6 +2,6 @@
 
 <ul>
     @foreach($products as $product)
-        <li>{{$product->getName()}} <strong>{{$product->categoryName}}</strong> - {{$product->currencyPrice}}</li>
+        <li><a href="{{route('product.show', $product)}}">{{$product->getName()}}</a> <strong>{{$product->categoryName}}</strong> - {{$product->currencyPrice}}</li>
     @endforeach
 </ul>

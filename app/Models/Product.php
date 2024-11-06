@@ -35,4 +35,9 @@ class Product extends Model
     {
         return $this->getPrice() . "€";
     }
+
+    public function tags()
+    {
+        return  $this->belongsToMany(Tag::class);
+    }
 }

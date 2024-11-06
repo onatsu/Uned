@@ -9,3 +9,4 @@
 # Ejercicios 6 de noviembre
 
 ## Añadir Tags a los productos
+## Añadir comentarios mutables a los productos (o lo que querais)

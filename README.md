@@ -10,3 +10,9 @@
 
 ## Añadir Tags a los productos
 ## Añadir comentarios mutables a los productos (o lo que querais)
+## instalar ususarios:
+composer require laravel/jetstream
+php artisan jetstream:install livewire
+npm install
+npm run dev
+php artisan migrate

@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 
 class EditButton extends Component
 {
-    private string $url;
+    public string $url;
     private ProductRepository $repository;
 
     /**
@@ -26,6 +26,6 @@ class EditButton extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.edit-button', ['url' => $this->url]);
+        return view('components.edit-button');
     }
 }

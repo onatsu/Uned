@@ -44,8 +44,9 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $request = new CreateProductRequest($request->name, $request->price);
-        $this->createProductUseCase->execute($request);
+        Product::create($request->all());
+
+        return redirect(route('product.index'))->with('flash.banner', 'Se ha creado un nuevo producto');
     }
 
     /**

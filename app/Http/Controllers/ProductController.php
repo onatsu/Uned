@@ -7,7 +7,9 @@ use App\Application\Product\ProductCreate;
 use App\Domain\Product\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Mail\NewProduct;
 use App\Models\Product;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -44,7 +46,9 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        Product::create($request->all());
+        $product = Product::create($request->all());
+
+        Mail::to('mail@mail.com')->send(new NewProduct($product));
 
         return redirect(route('product.index'))->with('flash.banner', 'Se ha creado un nuevo producto');
     }

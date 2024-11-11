@@ -47,9 +47,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->all());
-
-        dispatch(new SendNewProductEmail($product));
+        Product::create($request->all());
 
         return redirect(route('product.index'))->with('flash.banner', 'Se ha creado un nuevo producto');
     }

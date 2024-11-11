@@ -7,6 +7,7 @@ use App\Application\Product\ProductCreate;
 use App\Domain\Product\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\ProductResource;
 use App\Jobs\SendNewProductEmail;
 use App\Mail\NewProduct;
 use App\Models\Product;
@@ -47,7 +48,11 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        Product::create($request->all());
+        $product = Product::create($request->all());
+
+        $request->file('image')->storeAs(
+            'products',$product->id.'.jpg', 'public'
+        );
 
         return redirect(route('product.index'))->with('flash.banner', 'Se ha creado un nuevo producto');
     }
@@ -82,5 +87,10 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function apiShow(Product $product)
+    {
+        return new ProductResource($product);
     }
 }

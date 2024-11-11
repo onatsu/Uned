@@ -1,5 +1,7 @@
 <h1>{{$product->getName()}}</h1>
 
+<img src="{{$product->getImageUrl()}}" width="200">
+
 
 <h2>
     Etiquetas

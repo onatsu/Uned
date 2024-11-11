@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create(['email' => 'info@davidcruz.net']);
+        User::factory()->create(['email' => 'admin@email.com', 'admin' => true]);
+        User::factory()->create(['email' => 'user@email.com', 'admin' => false]);
         $this->call(ProductSeeder::class);
         $this->call(TagSeeder::class);
         $this->call(CommentSeeder::class);

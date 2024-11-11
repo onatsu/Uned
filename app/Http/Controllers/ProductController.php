@@ -40,6 +40,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Product::class);
         return view('product.create');
     }
 
@@ -48,6 +49,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        $this->authorize('create', Product::class);
         $product = Product::create($request->all());
 
         $request->file('image')->storeAs(
